@@ -14,8 +14,6 @@ namespace plutoisnipe
 		anti_hardscope::get()->start();
 		PRINT("plutoisnipe initialized.");
 
-		sizeof(game::gclient);
-
 		bool flag = true;
 
 		while (flag)
@@ -25,7 +23,7 @@ namespace plutoisnipe
 
 			if (!input.empty())
 			{
-				if (input == "quit")
+				if (input == "isnipe-quit")
 				{
 					flag = false;
 				}
