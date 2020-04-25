@@ -16,21 +16,10 @@ namespace plutoisnipe
 
 		bool flag = true;
 
-		while (flag)
+		while (true)
 		{
-			auto input = ""s;
-			std::getline(std::cin, input);
-
-			if (!input.empty())
-			{
-				if (input == "isnipe-quit")
-				{
-					flag = false;
-				}
-			}
+			std::this_thread::sleep_for(1s);
 		}
-
-		FreeLibrary(hmodule);
 	}
 
 	void shutdown()
