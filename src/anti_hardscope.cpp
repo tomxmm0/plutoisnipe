@@ -28,14 +28,14 @@ namespace plutoisnipe
 			{
 				for (int i = 0; i < 0x400; i++)
 				{
-					auto entity = game::entities + i;
+					auto entity = game::entities[i];
 
-					if (entity->state.type == 1)
+					if (entity.state.type == 1)
 					{
-						auto ads = game::PlayerCmd_PlayerAds(entity);
+						auto ads = game::PlayerCmd_PlayerAds(&entity);
 						auto iter = adscycles_.find(i);
 
-						if (iter != adscycles_.end() && game::is_allowed({ static_cast<unsigned int>(entity->shared.client->ps.current_weapon) }))
+						if (iter != adscycles_.end() && game::is_allowed({ static_cast<unsigned int>(entity.shared.client->ps.current_weapon) }))
 						{
 							if (ads == 1.f)
 							{
@@ -48,13 +48,13 @@ namespace plutoisnipe
 
 							if (iter->second > 10)
 							{
-								game::PlayerCmd_AllowAds(entity, false);
-								game::say_to(entity, "Hardscoping is not allowed.");
+								game::PlayerCmd_AllowAds(&entity, false);
+								game::say_to(i, "Hardscoping is not allowed.");
 							}
 
-							if (ads == 0.f && !game::PlayerCmd_adsButtonPressed(entity))
+							if (ads == 0.f && !game::PlayerCmd_adsButtonPressed(&entity))
 							{
-								game::PlayerCmd_AllowAds(entity, true);
+								game::PlayerCmd_AllowAds(&entity, true);
 							}
 						}
 
@@ -63,7 +63,7 @@ namespace plutoisnipe
 
 				std::this_thread::sleep_for(50ms);
 			}
-		});
+		}); 
 	}
 
 	void anti_hardscope::shutdown()

@@ -17,9 +17,9 @@ namespace plutoisnipe
 		float PlayerCmd_PlayerAds(gentity* ent);
 		bool PlayerCmd_adsButtonPressed(gentity* ent);
 
-		void say_to(gentity* ent, const char* msg);
+		void say_to(int num, const char* msg);
 
 		extern std::initializer_list<const char*> allowed;
-		bool is_allowed(const game::weapon weapon);
+		bool is_allowed(const game::weapon weapon); 
 	}
 }

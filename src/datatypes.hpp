@@ -22,11 +22,13 @@ namespace plutoisnipe
 			int current_weapon;
 			int weapon_flags;
 			float f_weapon_pos_frac;
+			char unk2[0x2F90];
 		};
 
 		struct gclient
 		{
 			player_state ps;
+			char unk1[0x59C];
 		};
 
 		struct shared_entity

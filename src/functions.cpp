@@ -38,11 +38,9 @@ namespace plutoisnipe
 			return (button & 0x800) != 0;
 		}
 
-		void say_to(gentity* ent, const char* msg)
+		void say_to(int num, const char* msg)
 		{
-			auto num = ent - entities;
 			char text[64];
-
 			sprintf_s(text, "%c \"%s\"", 84, msg);
 
 			reinterpret_cast<SV_GameSendServerCommand_t>(SV_GameSendServerCommand_addr)(num, 0, text);
@@ -72,6 +70,6 @@ namespace plutoisnipe
 			}
 
 			return false;
-		}
+		} 
 	}
 }

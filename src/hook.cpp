@@ -16,12 +16,10 @@ namespace plutoisnipe
 		{
 			void Scr_PlayerDamage_hk(int* self, int* attacker, int* target, int damage, int dflags, int mod, game::weapon weapon, bool alt, game::vec3 point, game::vec3 dir, int hit_location, int time_offset)
 			{
-				auto name = game::weapon_complete_defs[weapon.weapon_data & 0xFF]->name;
-
-				if (!game::is_allowed(weapon))
+				if (!game::is_allowed(weapon) || mod == 8)
 				{
 					damage = 0;
-				}
+				} 
 
 				return reinterpret_cast<game::Scr_PlayerDamage_t>(game::Scr_PlayerDamage_addr)(
 					self,
