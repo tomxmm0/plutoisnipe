@@ -11,7 +11,6 @@ namespace plutoisnipe
 	void initialize(const HMODULE hmodule)
 	{
 		hook::initialize();
-		anti_hardscope::get()->start();
 		PRINT("plutoisnipe initialized.");
 
 		bool flag = true;
@@ -25,7 +24,6 @@ namespace plutoisnipe
 	void shutdown()
 	{
 		PRINT("Shutting down plutoisnipe.");
-		anti_hardscope::get()->shutdown();
 		hook::shutdown();
 	}
 }

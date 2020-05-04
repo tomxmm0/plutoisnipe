@@ -8,9 +8,8 @@ namespace plutoisnipe
 {
 	namespace game
 	{
-		std::uintptr_t PM_ExitAimDownSight_addr = 0x428050;
-		std::uintptr_t SV_GameSendServerCommand_addr = 0x573220;
-		std::uintptr_t Scr_PlayerDamage_addr = 0x527B90;
+		PM_ExitAimDownSight_t PM_ExitAimDownSight = PM_ExitAimDownSight_t(0x428050);
+		SV_GameSendServerCommand_t SV_GameSendServerCommand = SV_GameSendServerCommand_t(0x573220);
 
 		void PlayerCmd_AllowAds(gentity* ent, const bool allow)
 		{
@@ -21,7 +20,7 @@ namespace plutoisnipe
 			else
 			{
 				ent->shared.client->ps.weapon_flags |= 0x20u;
-				reinterpret_cast<PM_ExitAimDownSight_t>(PM_ExitAimDownSight_addr)(&ent->shared.client->ps);
+				PM_ExitAimDownSight(&ent->shared.client->ps);
 			}
 		}
 
@@ -43,7 +42,7 @@ namespace plutoisnipe
 			char text[64];
 			sprintf_s(text, "%c \"%s\"", 84, msg);
 
-			reinterpret_cast<SV_GameSendServerCommand_t>(SV_GameSendServerCommand_addr)(num, 0, text);
+			SV_GameSendServerCommand(num, 0, text);
 		}
 
 		std::initializer_list<const char*> allowed = {
@@ -63,7 +62,7 @@ namespace plutoisnipe
 
 			for (const auto& weapon : allowed)
 			{
-				if (strcmp(name, weapon) == 0)
+				if (!strcmp(name, weapon))
 				{
 					return true;
 				}

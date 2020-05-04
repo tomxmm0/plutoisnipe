@@ -5,13 +5,10 @@ namespace plutoisnipe
 	namespace game
 	{
 		typedef void(__cdecl* PM_ExitAimDownSight_t)(player_state* ps);
-		extern std::uintptr_t PM_ExitAimDownSight_addr;
+		extern PM_ExitAimDownSight_t PM_ExitAimDownSight;
 
 		typedef void(__cdecl* SV_GameSendServerCommand_t)(const int cnum, const int type, const char* text);
-		extern std::uintptr_t SV_GameSendServerCommand_addr;
-
-		typedef void(__cdecl* Scr_PlayerDamage_t)(int* self, int* attacker, int* target, int damage, int dflags, int mod, weapon weapon, bool alt, vec3 point, vec3 dir, int hit_location, int time_offset);
-		extern std::uintptr_t Scr_PlayerDamage_addr;
+		extern SV_GameSendServerCommand_t SV_GameSendServerCommand;
 
 		void PlayerCmd_AllowAds(gentity* ent, const bool allow);
 		float PlayerCmd_PlayerAds(gentity* ent);
